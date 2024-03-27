@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="h1 display-6">Posts</h1>
+            <a href="/posts/create" class="btn btn-primary">Create new post</a>
+            <hr class="text-muted">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <% if (posts) { %>
+            <% posts.forEach(post=> { %>
+                <div class="col-md-4">
+                    <article class="card">
+                        <div class="card-header bg-white">
+                            <h1 class="h1 card-title fs-4">
+                                <%= post.title %>
+                            </h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-3 card-subtitle text-muted fs-6">
+                                <span class="fs-6">
+                                    <%= post.createdAt.toLocaleDateString() %>
+                                </span>
+                                <span class="vr fs-4"></span>
+                                <span class="fs-6">O.J. Paul</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <%- post.HTMLBody %>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="button-group">
+                                <a href="/posts/details/<%= post.slug %> "
+                                    class="card-action btn btn-sm btn-outline-primary">Read post</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="h2 card-title fw-light">No posts found</h2>
+                            </div>
+                        </div>
+                        <% } %>
+
+    </div>
+</div>
